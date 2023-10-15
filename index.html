@@ -2,12 +2,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Požičovňa vozidiel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Formulát</h1>
-    <form action=""></form>
+    <h1>Rezervačný formulár</h1>
+    <form action="">
+        <h3>Základné infromácie</h3>
+        <div class="form-section">
+            <div class="input">
+                <label for="name">Meno</label>
+                <input type="text" name="name" id="name" placeholder="Zadajte meno">
+            </div>
+            <div class="input">
+                <label for="surname">Priezvisko</label>
+                <input type="text" name="surname" id="surname" placeholder="Zadajte priezvisko">
+            </div>
+            <div class="input">
+                <label for="age">Vek</label>
+                <input type="number" name="age" id="age" placeholder="Zadajte vek">
+            </div>
+            <div class="input">
+                <label for="date-of-birth">Dátum narodenia</label>
+                <input type="date" name="date-of-birth" id="date-of-birth">
+            </div>
+            <div class="input">
+                <label for="phone">Telefónne číslo</label>
+                <input type="tel" name="phone" id="phone" placeholder="Zadajte vaše číslo">
+            </div>
+            <div class="input">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Zadajte váš email">
+            </div>
+        </div>
+        <h3>Výber vozidla</h3>
+        <div class="form-section">
+            <div class="input">
+                <label for="car-type">Typ vozidla</label>
+                <select name="car-type" id="car-type">
+                    <option value="auto">Auto</option>
+                    <option value="motorka">Motocykel</option>
+                    <option value="bus">Autobus</option>
+                </select>
+            </div>
+            <div class="input">
+                <label for="car-brand">Značka vozidla</label>
+                <select name="car-brand" id="car-brand" class="default-disabled">
+                </select>
+            </div>
+            <div class="input">
+                <label for="car-model">Model vozidla</label>
+                <select name="car-model" id="car-model" class="default-disabled">
+                </select>
+            </div>
+        </div>
+        <h3>Ďalšie informácie</h3>
+        <div class="form-section">
+            <div class="input">
+                <p class="radio-group-label">Vyberte si dĺžku zapožičania vozidla:</p>
+                <div class="radio-group">
+                    <label for="rental-length-1">1-7 dní</label>
+                    <input type="radio" name="rental-length" id="rental-length-1" value="7">
+                    <label for="rental-length-2">7-14 dní</label>
+                    <input type="radio" name="rental-length" id="rental-length-2" value="14">
+                    <label for="rental-length-3">Viac ako 14</label>
+                    <input type="radio" name="rental-length" id="rental-length-3" value="15">
+                </div>
+            </div>
+            <div class="input">
+                <p class="checkbox-group-label">Vyberte si doplnkové služby:</p>
+                <div class="checkbox-group">
+                    <label for="additional-services-1">Poistenie</label>
+                    <input type="checkbox" name="additional-services" id="additional-services-1" value="1">
+                    <label for="additional-services-2">Zimné pneumatiky</label>
+                    <input type="checkbox" name="additional-services" id="additional-services-2" value="2">
+                    <label for="additional-services-3">Navigácia</label>
+                    <input type="checkbox" name="additional-services" id="additional-services-3" value="3">
+                    <label for="additional-services-4">Iné</label>
+                    <input type="checkbox" name="additional-services" id="additional-services-3" value="4">
+                    <textarea class="default-hidden" name="additional-services-textarea" id="additional-services-textarea" cols="30" rows="10" placeholder="Napíšte aké doplnkové služby si želáte"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="submit">Odoslať</button>
+    </form>
     <script src="index.js"></script>
 </body>
 </html>
