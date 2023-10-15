@@ -61,25 +61,40 @@
             <div class="input">
                 <p class="radio-group-label">Vyberte si dĺžku zapožičania vozidla:</p>
                 <div class="radio-group">
-                    <label for="rental-length-1">1-7 dní</label>
-                    <input type="radio" name="rental-length" id="rental-length-1" value="7">
-                    <label for="rental-length-2">7-14 dní</label>
-                    <input type="radio" name="rental-length" id="rental-length-2" value="14">
-                    <label for="rental-length-3">Viac ako 14</label>
-                    <input type="radio" name="rental-length" id="rental-length-3" value="15">
+                    <label class="radio-container" for="rental-length-1">1-7 dní
+                        <input type="radio" name="rental-length" id="rental-length-1" value="7">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <label class="radio-container" for="rental-length-2">7-14 dní
+                        <input type="radio" name="rental-length" id="rental-length-2" value="14">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <label class="radio-container" for="rental-length-3">Viac ako 14
+                        <input type="radio" name="rental-length" id="rental-length-3" value="15">
+                        <span class="radio-indicator"></span>
+                    </label>
                 </div>
             </div>
             <div class="input">
                 <p class="checkbox-group-label">Vyberte si doplnkové služby:</p>
                 <div class="checkbox-group">
-                    <label for="additional-services-1">Poistenie</label>
-                    <input type="checkbox" name="additional-services" id="additional-services-1" value="1">
-                    <label for="additional-services-2">Zimné pneumatiky</label>
-                    <input type="checkbox" name="additional-services" id="additional-services-2" value="2">
-                    <label for="additional-services-3">Navigácia</label>
-                    <input type="checkbox" name="additional-services" id="additional-services-3" value="3">
-                    <label for="additional-services-4">Iné</label>
-                    <input type="checkbox" name="additional-services" id="additional-services-3" value="4">
+                    <label class="checkbox-container" for="additional-services-1">Poistenie
+                        <input type="checkbox" name="additional-services" id="additional-services-1" value="1">
+                        <span class="checkmark"></span>
+                    </label>
+                    
+                    <label class="checkbox-container" for="additional-services-2">Zimné pneumatiky
+                        <input type="checkbox" name="additional-services" id="additional-services-2" value="2">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container" for="additional-services-3">Navigácia
+                        <input type="checkbox" name="additional-services" id="additional-services-3" value="3">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container" for="additional-services-4">Iné
+                        <input type="checkbox" name="additional-services" id="additional-services-4" value="4">
+                        <span class="checkmark"></span>
+                    </label>
                     <textarea class="default-hidden" name="additional-services-textarea" id="additional-services-textarea" cols="30" rows="10" placeholder="Napíšte aké doplnkové služby si želáte"></textarea>
                 </div>
             </div>

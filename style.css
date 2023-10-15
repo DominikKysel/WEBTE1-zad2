@@ -18,7 +18,6 @@ form {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: space-between;
     margin-bottom: 1em;
     width: 100%;
@@ -63,11 +62,11 @@ button:hover {
     margin-left: 0.5em;
 }
 
+/* Checkbox and Radio custom styles*/
+
 .checkbox-group , .radio-group{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
     justify-content: flex-start;
     margin-bottom: 0.5em;
 }
@@ -78,6 +77,104 @@ button:hover {
     margin-left: 0;
     width: 50%;
 }
+
+.checkbox-container, .radio-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    padding-right: 50%;
+}
+.checkbox-container input, .radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/* Checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 1em;
+}
+  
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+  
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+  
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+  
+.checkbox-container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* Radio */
+.radio-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 35px;
+    background-color: #eee;
+    border-radius: 1em;
+}
+  
+.radio-container:hover input ~ .radio-indicator {
+    background-color: #ccc;
+}
+  
+.radio-container input:checked ~ .radio-indicator {
+    background-color: #2196F3;
+}
+  
+.radio-indicator:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+  
+.radio-container input:checked ~ .radio-indicator:after {
+    display: block;
+}
+  
+.radio-container .radio-indicator:after {
+    top: 6px;
+    left: 10px;
+    width: 15px;
+    height: 8px;
+    border-radius: 1em;
+    background: white;
+}
+
+
 .default-hidden {
     visibility: hidden;
 }
