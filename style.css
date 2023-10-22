@@ -6,8 +6,8 @@ html {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #fefeff;
-    color: #020618;
+    background-color: #000;
+    color: #fff;
 }
 form {
     display: flex;
@@ -33,34 +33,53 @@ form {
 }
 
 input, select , textarea, button{
+    background-color: #000;
+    color: #fff;
     margin-bottom: 0.5em;
     padding: 0.5em;
-    border: 1px solid #538fff;
+    border: 1px solid #2545ff;
     border-radius: 1em;
     font-size: 1em;
     width: 100%;
 }
 input:focus {
     outline: none;
-    border-color: #538fff;
-    box-shadow: 0 0 0 2px #538fff;
+    border-color: #2545ff;
+    box-shadow: 0 0 0 2px #2545ff;
 }
 button {
-    background-color: #538fff;
-    color: #fefeff;
+    background-color: #000;
+    color: #2545ff;
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 }
 button:hover {
-    background-color: #3f6de8;
+    background-color: #2545ff;
+    color: #fff;
 }
 
 .input label {
     margin-bottom: 0.5em;
     margin-left: 0.5em;
 }
+.inline-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.inline-div select {
+    max-width: 35%;
+}
+.inline-div input {
+    max-width: 60%;
+}
+
+
+
 
 /* Checkbox and Radio custom styles*/
 
@@ -101,16 +120,17 @@ button:hover {
     right: 0;
     height: 25px;
     width: 25px;
-    background-color: #eee;
+    background-color: #000;
+    border: 1px solid #2545ff;
     border-radius: 1em;
 }
   
 .checkbox-container:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: #0c1441;
 }
   
 .checkbox-container input:checked ~ .checkmark {
-    background-color: #2196F3;
+    background-color: #000;
 }
   
 .checkmark:after {
@@ -128,14 +148,12 @@ button:hover {
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid white;
+    border: solid #2545ff;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
-
 /* Radio */
 .radio-indicator {
     position: absolute;
@@ -143,16 +161,18 @@ button:hover {
     right: 0;
     height: 20px;
     width: 35px;
-    background-color: #eee;
+    background-color: #000;
     border-radius: 1em;
+    border: 1px solid #2545ff;
 }
   
 .radio-container:hover input ~ .radio-indicator {
-    background-color: #ccc;
+    background-color: #0b123d;
+    border: 1px solid #2545ff;
 }
   
 .radio-container input:checked ~ .radio-indicator {
-    background-color: #2196F3;
+    background-color: #000;
 }
   
 .radio-indicator:after {
@@ -171,10 +191,48 @@ button:hover {
     width: 15px;
     height: 8px;
     border-radius: 1em;
-    background: white;
+    background: #2545ff;
+    border-color: #000;
 }
 
 
+
+
 .default-hidden {
-    visibility: hidden;
+    display: none;
+}
+
+.correct {
+    color: #21f721;
+    border-color: #21f721;
+
+}
+
+.error {
+    color: #f72121;
+    border-color: #f72121;
+}
+
+@media only screen and (max-width: 600px) {
+    .input {
+        width: 100%;
+        margin-bottom: 10px;
+        flex-direction: column;
+        align-items: left;
+        flex-wrap: wrap;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .inline-div {
+        flex-direction: column;
+        align-items: left;
+        flex-wrap: wrap;
+    }
+    .inline-div select, .inline-div input {
+        max-width: 100%;
+    }
 }

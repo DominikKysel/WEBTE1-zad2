@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Rezervačný formulár</h1>
-    <form action="">
+    <form action="" id="form">
         <h3>Základné infromácie</h3>
         <div class="form-section">
             <div class="input">
@@ -20,15 +20,22 @@
             </div>
             <div class="input">
                 <label for="age">Vek</label>
-                <input type="number" name="age" id="age" placeholder="Zadajte vek">
+                <input type="number" name="age" id="age" placeholder="100" disabled>
             </div>
             <div class="input">
                 <label for="date-of-birth">Dátum narodenia</label>
-                <input type="date" name="date-of-birth" id="date-of-birth">
+                <input type="date" name="date-of-birth" id="date-of-birth" value="1923-01-01" min="1923-01-01" max="2005-11-01">
             </div>
             <div class="input">
                 <label for="phone">Telefónne číslo</label>
-                <input type="tel" name="phone" id="phone" placeholder="Zadajte vaše číslo">
+                <div class="inline-div">
+                    <select name="phone-prefix" id="phone-prefix">
+                        <option value="none" selected disabled hidden>Vyberte predvoľbu</option>
+                        <option value="00421">+421</option>
+                        <option value="00420">+420</option>
+                        <option value="0049">+49</option>
+                    <input type="tel" name="phone" id="phone" placeholder="Zadajte vaše číslo">
+                </div>
             </div>
             <div class="input">
                 <label for="email">Email</label>
@@ -37,23 +44,104 @@
         </div>
         <h3>Výber vozidla</h3>
         <div class="form-section">
-            <div class="input">
-                <label for="car-type">Typ vozidla</label>
-                <select name="car-type" id="car-type">
+            <div class="input" id="vehicle-types">
+                <label for="vehicle-type">Typ vozidla</label>
+                <select name="vehicle-type" id="vehicle-type">
+                    <option value="none" selected disabled hidden>Vyberte typ vozidla</option>
                     <option value="auto">Auto</option>
                     <option value="motorka">Motocykel</option>
                     <option value="bus">Autobus</option>
                 </select>
             </div>
-            <div class="input">
-                <label for="car-brand">Značka vozidla</label>
-                <select name="car-brand" id="car-brand" class="default-disabled">
-                </select>
+            <div class="input" id="vehicle-brands">
+                <div id="vehicle-brand">
+                    <label for="vehicle-brand">Značka vozidla</label>
+                    <select name="vehicle-brand" disabled="disabled"></select>
+                </div>
+                <div data-type="auto" class="vehicle-type-div default-hidden">
+                    <label for="car-brand">Značka auta</label>
+                    <select name="car-brand" id="car-brand" class="brand-select">
+                        <option value="none" selected disabled hidden>Vyberte značku auta</option>
+                        <option value="VW" class="brandForCar">Volkswagen</option>
+                        <option value="Audi" class="brandForCar">Audi</option>
+                        <option value="Mercedes" class="brandForCar">Mercedes</option>
+                    </select>
+                </div>
+                <div data-type="motorka" class="vehicle-type-div default-hidden">
+                    <label for="motorbike-brand">Značka motocykla</label>
+                    <select name="motorbike-brand" id="motorbike-brand" class="brand-select">
+                        <option value="none" selected disabled hidden>Vyberte značku motocykla</option>
+                        <option value="Yamaha" class="brandForMotorbike">Yamaha</option>
+                        <option value="Kawasaki" class="brandForMotorbike">Kawasaki</option>
+                        <option value="Honda" class="brandForMotorbike">Honda</option>
+                    </select>
+                </div>
+                <div data-type="bus" class="vehicle-type-div default-hidden">
+                    <label for="bus-brand">Značka autobusu</label>
+                    <select name="bus-brand" id="bus-brand" class="brand-select">
+                        <option value="none" selected disabled hidden>Vyberte značku autobusu</option>
+                        <option value="Volvo" class="brandForBus">Volvo</option>
+                        <option value="Iveco" class="brandForBus">Iveco</option>
+                        <option value="Scania" class="brandForBus">Scania</option>
+                    </select>
+                </div>
             </div>
-            <div class="input">
-                <label for="car-model">Model vozidla</label>
-                <select name="car-model" id="car-model" class="default-disabled">
-                </select>
+            <div class="input" id="vehicle-models">
+                <div id="vehicle-model">
+                    <label for="vehicle-model">Model vozidla</label>
+                    <select name="vehicle-model" disabled="disabled"></select>
+                </div>
+                <!--Car models-->
+                <div data-type="auto" class="vehicle-type-div default-hidden">
+                    <label for="car-model">Model auta</label>
+                    <select data-brand="none" name="car-model" class="model-empty" disabled></select>
+                    <select data-brand="VW" name="car-model" id="car-model-vw" class="vehicle-model-div default-hidden">
+                        <option value="Arteon" class="ModelForCar">Arteon</option>
+                        <option value="Golf GTI" class="ModelForCar">Golf GTI</option>
+                    </select>
+                    <select data-brand="Audi" name="car-model" id="car-model-audi" class="vehicle-model-div default-hidden">
+                        <option value="R8" class="ModelForCar">R8</option>
+                        <option value="Q8" class="ModelForCar">Q8</option>
+                    </select>
+                    <select data-brand="Mercedes" name="car-model" id="car-model-mercedes" class="vehicle-model-div default-hidden">
+                        <option value="GLA SUV" class="ModelForCar">GLA SUV</option>
+                        <option value="AMG GT 4-door Coupe" class="ModelForCar">AMG GT 4-door Coupe</option>
+                    </select>
+                </div>
+                <!--Motorbike models-->
+                <div data-type="motorka" class="vehicle-type-div default-hidden">
+                    <label for="motorbike-model">Model motocykla</label>
+                    <select data-brand="none" name="motorbike-model" class="model-empty" disabled></select>
+                    <select data-brand="Yamaha" name="motorbike-model" id="motorbike-model-yamaha" class="vehicle-model-div default-hidden">
+                        <option value="R15 V4" class="modelForMotorbike">R15 V4</option>
+                        <option value="FZ-X" class="modelForMotorbike">FZ-X</option>
+                    </select>
+                    <select data-brand="Kawasaki" name="motorbike-model" id="motorbike-model-kawasaki" class="vehicle-model-div default-hidden">
+                        <option value="VERSYS-X 300" class="modelForMotorbike">VERSYS-X 300</option>
+                        <option value="ELIMINATOR" class="modelForMotorbike">ELIMINATOR</option>
+                    </select>
+                    <select data-brand="Honda" name="motorbike-model" id="motorbike-model-honda" class="vehicle-model-div default-hidden">
+                        <option value="XR150L" class="modelForMotorbike">XR150L</option>
+                        <option value="CB500F" class="modelForMotorbike">CB500F</option>
+                    </select>
+                </div>
+                <!--Bus models-->
+                <div data-type="bus" class="vehicle-type-div default-hidden">
+                    <label for="bus-model">Model autobusu</label>
+                    <select data-brand="none" name="bus-model" class="model-empty" disabled></select>
+                    <select data-brand="Volvo" name="bus-model" id="bus-model-volvo" class="vehicle-model-div default-hidden">
+                        <option value="7700" class="modelForBus">7700</option>
+                        <option value="9700" class="modelForBus">9700</option>
+                    </select>
+                    <select data-brand="Iveco" name="bus-model" id="bus-model-iveco" class="vehicle-model-div default-hidden">
+                        <option value="EVADYS" class="modelForBus">EVADYS</option>
+                        <option value="CROSSWAY" class="modelForBus">CROSSWAY</option>
+                    </select>
+                    <select data-brand="Scania" name="bus-model" id="bus-model-scania" class="vehicle-model-div default-hidden">
+                        <option value="Citywide" class="modelForBus">Citywide</option>
+                        <option value="Higer A30" class="modelForBus">Higer A30</option>
+                    </select>
+                </div>
             </div>
         </div>
         <h3>Ďalšie informácie</h3>
@@ -61,45 +149,50 @@
             <div class="input">
                 <p class="radio-group-label">Vyberte si dĺžku zapožičania vozidla:</p>
                 <div class="radio-group">
-                    <label class="radio-container" for="rental-length-1">1-7 dní
-                        <input type="radio" name="rental-length" id="rental-length-1" value="7">
+                    <label class="radio-container" for="rental-length-1">1-3 dni
+                        <input type="radio" name="rental-length" id="rental-length-1" value="1-3 dni">
                         <span class="radio-indicator"></span>
                     </label>
-                    <label class="radio-container" for="rental-length-2">7-14 dní
-                        <input type="radio" name="rental-length" id="rental-length-2" value="14">
+                    <label class="radio-container" for="rental-length-2">3-7 dní
+                        <input type="radio" name="rental-length" id="rental-length-2" value="3-7 dní">
                         <span class="radio-indicator"></span>
                     </label>
-                    <label class="radio-container" for="rental-length-3">Viac ako 14
-                        <input type="radio" name="rental-length" id="rental-length-3" value="15">
+                    <label class="radio-container" for="rental-length-3">14-30 dní
+                        <input type="radio" name="rental-length" id="rental-length-3" value="14-30 dní">
                         <span class="radio-indicator"></span>
                     </label>
+                    <label class="radio-container" for="rental-length-4">Iné
+                        <input type="radio" name="rental-length" id="rental-length-4" value="custom">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <textarea class="default-hidden" 
+                        name="rental-length-textarea" 
+                        id="rental-length-textarea" 
+                        cols="30" rows="10" 
+                        placeholder="Napíšte dĺžku zapožičania vozidla"
+                        ></textarea>
                 </div>
             </div>
             <div class="input">
                 <p class="checkbox-group-label">Vyberte si doplnkové služby:</p>
                 <div class="checkbox-group">
                     <label class="checkbox-container" for="additional-services-1">Poistenie
-                        <input type="checkbox" name="additional-services" id="additional-services-1" value="1">
+                        <input type="checkbox" name="additional-services" id="additional-services-1" value="Poistenie">
                         <span class="checkmark"></span>
                     </label>
                     
                     <label class="checkbox-container" for="additional-services-2">Zimné pneumatiky
-                        <input type="checkbox" name="additional-services" id="additional-services-2" value="2">
+                        <input type="checkbox" name="additional-services" id="additional-services-2" value="Zimné pneumatiky">
                         <span class="checkmark"></span>
                     </label>
                     <label class="checkbox-container" for="additional-services-3">Navigácia
-                        <input type="checkbox" name="additional-services" id="additional-services-3" value="3">
+                        <input type="checkbox" name="additional-services" id="additional-services-3" value="Navigácia">
                         <span class="checkmark"></span>
                     </label>
-                    <label class="checkbox-container" for="additional-services-4">Iné
-                        <input type="checkbox" name="additional-services" id="additional-services-4" value="4">
-                        <span class="checkmark"></span>
-                    </label>
-                    <textarea class="default-hidden" name="additional-services-textarea" id="additional-services-textarea" cols="30" rows="10" placeholder="Napíšte aké doplnkové služby si želáte"></textarea>
                 </div>
             </div>
         </div>
-        <button type="submit">Odoslať</button>
+        <button id="submit-btn" type="submit">Odoslať</button>
     </form>
     <script src="index.js"></script>
 </body>
