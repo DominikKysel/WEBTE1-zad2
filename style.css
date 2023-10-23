@@ -225,6 +225,14 @@ button:hover {
     display: none;
     transition: 0.2s ease-in-out;
 }
+.counter-label {
+    font-size: 0.75em;
+    margin-left: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0;
+    text-align: left;
+    opacity: 0.5;
+}
 .legend {
     font-size: 0.75em;
     font-weight: bold;
@@ -256,8 +264,27 @@ button:hover {
     height: 80vh;
     overflow: auto;
 }
+.modal-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+.modal-btn {
+    margin: 0 0.5em;
+}
+#price {
+    border: none;
+    cursor: default;
+}
+#price:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .input {
         width: 100%;
         margin-bottom: 10px;
@@ -271,6 +298,9 @@ button:hover {
         align-items: center;
         flex-wrap: wrap;
     }
+    .form-section .input {
+        max-width: 80%;
+    }
     .inline-div {
         flex-direction: column;
         align-items: left;
@@ -278,5 +308,11 @@ button:hover {
     }
     .inline-div select, .inline-div input {
         max-width: 100%;
+    }
+    .modal-body {
+        width: 90%;
+    }
+    .modal-btns {
+        flex-direction: column;
     }
 }

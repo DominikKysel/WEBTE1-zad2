@@ -41,6 +41,7 @@ carTypeSelect.addEventListener("change", () => {
     });
     document.getElementById("vehicle-err-msg").style.display = "none";
     carTypeSelect.classList.remove("error");
+    calcPrice();
 });
 
 brandSelect.forEach((select) => {
@@ -86,14 +87,18 @@ radioGroup.forEach((radio) => {
         radioGroupValue = radio.value;
         if (radioCustom.checked) {
             rentalLengthTextarea.style.display = "block";
+            document.getElementById("rental-length-textarea-counter").style.display = "block";
         } else {
             rentalLengthTextarea.style.display = "none";
+            document.getElementById("rental-length-textarea-counter").style.display = "none";
         }
+        calcPrice();
     });
 });
 
-rentalLengthTextarea.addEventListener("change", () => {
+rentalLengthTextarea.addEventListener("keydown", () => {
     rentalLengthTextareaValue = rentalLengthTextarea.value;
+    document.getElementById("rental-length-textarea-counter").innerHTML = rentalLengthTextarea.value.length + "/30";
 });
 
 function validateRadioGroup() {
@@ -150,7 +155,7 @@ let phoneValue = "";
 let ageValue = "";
 let dateOfBirthValue = "";
 
-firstName.addEventListener("change", () => {
+firstName.addEventListener("keyup", () => {
     if (firstName.value.trim() === "") {
         firstName.classList.add("error");
         firstName.classList.remove("correct");
@@ -161,8 +166,9 @@ firstName.addEventListener("change", () => {
         firstName.classList.add("correct");
         nameValid = true;
     }
+    document.getElementById("name-counter").innerHTML = firstName.value.length + "/30";
 });
-lastName.addEventListener("change", () => {
+lastName.addEventListener("keyup", () => {
     if (lastName.value.trim() === "") {
         lastName.classList.add("error");
         lastName.classList.remove("correct");
@@ -173,8 +179,9 @@ lastName.addEventListener("change", () => {
         lastName.classList.add("correct");
         surnameValid = true;
     }
+    document.getElementById("surname-counter").innerHTML = lastName.value.length + "/30";
 });
-email.addEventListener("change", () => {
+email.addEventListener("keyup", () => {
     if (email.value.trim() === "" || !isValidEmail(email.value.trim())) {
         email.classList.add("error");
         email.classList.remove("correct");
@@ -189,7 +196,7 @@ email.addEventListener("change", () => {
     }
 });
 
-phone.addEventListener("change", () => {
+phone.addEventListener("keyup", () => {
     const phoneRegex = /^\d{9}$/;
     if (phone.value.length === 9 && phonePrefix.value !== "" && phonePrefix.value !== "none" && phoneRegex.test(phone.value)) {
         phoneValue = phonePrefix.value + phone.value;
@@ -207,6 +214,7 @@ phone.addEventListener("change", () => {
         phoneValid = false;
         document.getElementById("phone-err-msg").style.display = "block";
     }
+    document.getElementById("phone-counter").innerHTML = phone.value.length + "/9";
 });
 
 phonePrefix.addEventListener("change", () => {
@@ -260,6 +268,11 @@ dateOfBirth.addEventListener("change", () => {
     }
 });
 
+extraServices.forEach((checkbox) => {
+    checkbox.addEventListener("change", () => {
+        calcPrice();
+    });
+});
 
 
 form.addEventListener("submit", (event) => {
@@ -354,6 +367,7 @@ form.addEventListener("submit", (event) => {
         if(extraServicesValues.length !== 0){
             document.getElementById("sum-extra-services").innerHTML = "Extra služby: "+extraServicesValues.join(", ");
         }
+
         document.getElementById("modal").style.display = "block";
     }
 });
@@ -361,6 +375,45 @@ form.addEventListener("submit", (event) => {
 function isValidEmail(email) {
     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     return emailRegex.test(email);
+}
+
+function calcPrice(){
+    let price = 0;
+    let rentalLengthCustom = false;
+    const carTypeSelect = document.getElementById("vehicle-type");
+    const carTypeDivs = document.querySelectorAll(".vehicle-type-div");
+    const selectedValue = carTypeSelect.value;
+    carTypeDivs.forEach((div) => {
+        if (div.dataset.type === selectedValue) {
+            console.log(div.dataset.price);
+            price += parseInt(div.dataset.price);
+        }
+    });
+    const radioGroup = document.querySelectorAll(".radio-group input[type=radio]");
+    radioGroup.forEach((radio) => {
+        if(radio.checked){
+            console.log(radio.dataset.price);
+            price += parseInt(radio.dataset.price);
+        }
+        if(radio.id === "rental-length-4" && radio.checked){
+            rentalLengthCustom = true;
+        }
+    });
+    const extraServices = document.querySelectorAll(".checkbox-container input[type=checkbox]");
+    extraServices.forEach((checkbox) => {
+        if(checkbox.checked){
+            console.log(checkbox.dataset.price);
+            price += parseInt(checkbox.dataset.price);
+        }
+    });
+
+    if(rentalLengthCustom){
+        document.getElementById("price").value ="Cena od: " + price + "€+";
+        document.getElementById("sum-price").innerHTML ="Cena od: " + price + "€+";
+    } else{
+        document.getElementById("price").value ="Cena: " + price + "€";
+        document.getElementById("sum-price").innerHTML ="Cena: " + price + "€";
+    }
 }
 
 const closeModalBtn = document.getElementById("close-modal-btn");
