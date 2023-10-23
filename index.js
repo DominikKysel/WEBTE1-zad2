@@ -2,6 +2,7 @@ const carTypeSelect = document.getElementById("vehicle-type");
 const carTypeDivs = document.querySelectorAll(".vehicle-type-div");
 const emptySelects = document.getElementsByClassName("model-empty");
 const brandSelect = document.querySelectorAll(".brand-select");
+const placeholderSelects = document.querySelectorAll(".placeholder-inputs");
 const modelSelects = document.querySelectorAll(".vehicle-model-div");
 let vehicleTypeValid = false;
 let vehicleBrandValid = false;
@@ -35,10 +36,16 @@ carTypeSelect.addEventListener("change", () => {
     for (let i = 0; i < emptySelects.length; i++) {
         emptySelects[i].style.display = "block";
     }
+    placeholderSelects.forEach((select) => {
+        select.classList.remove("error");
+    });
+    document.getElementById("vehicle-err-msg").style.display = "none";
+    carTypeSelect.classList.remove("error");
 });
 
 brandSelect.forEach((select) => {
     select.addEventListener("change", () => {
+        select.classList.remove("error");
         const selectedValue = select.value;
         modelSelects.forEach((select) => {
             if (select.dataset.brand === selectedValue) {
@@ -57,6 +64,7 @@ brandSelect.forEach((select) => {
 
 modelSelects.forEach((select) => {
     select.addEventListener("change", () => {
+        select.classList.remove("error");
         if(select.value === "" || select.value === "none"){
             vehicleModelValid = false;
             vehicleModelValue = "";
@@ -104,12 +112,18 @@ function validateRadioGroup() {
     if (radioCustom.checked && rentalLengthTextarea.value.trim() === "") {
         rentalLengthTextarea.classList.add("error");
         rentalLengthTextarea.classList.remove("correct");
+        document.getElementById("rental-length-4").classList.add("error");
         return false;
     } else {
         rentalLengthTextarea.classList.remove("error");
         rentalLengthTextarea.classList.add("correct");
+        document.getElementById("rental-length-4").classList.remove("error");
     }
-
+    if (radioGroupValid === false) {
+        document.getElementById("rental-err-msg").style.display = "block";
+    } else {
+        document.getElementById("rental-err-msg").style.display = "none";
+    }
     return radioGroupValid;
 }
 
@@ -165,11 +179,13 @@ email.addEventListener("change", () => {
         email.classList.add("error");
         email.classList.remove("correct");
         emailValid = false;
+        document.getElementById("email-err-msg").style.display = "block";
     } else {
         emailValue = email.value;
         email.classList.remove("error");
         email.classList.add("correct");
         emailValid = true;
+        document.getElementById("email-err-msg").style.display = "none";
     }
 });
 
@@ -182,12 +198,14 @@ phone.addEventListener("change", () => {
         phonePrefix.classList.remove("error");
         phonePrefix.classList.add("correct");
         phoneValid = true;
+        document.getElementById("phone-err-msg").style.display = "none";
     } else {
         phone.classList.remove("correct");
         phone.classList.add("error");
         phonePrefix.classList.remove("correct");
         phonePrefix.classList.add("error");
         phoneValid = false;
+        document.getElementById("phone-err-msg").style.display = "block";
     }
 });
 
@@ -200,12 +218,14 @@ phonePrefix.addEventListener("change", () => {
         phonePrefix.classList.remove("error");
         phonePrefix.classList.add("correct");
         phoneValid = true;
+        document.getElementById("phone-err-msg").style.display = "none";
     } else {
         phone.classList.remove("correct");
         phone.classList.add("error");
         phonePrefix.classList.remove("correct");
         phonePrefix.classList.add("error");
         phoneValid = false;
+        document.getElementById("phone-err-msg").style.display = "block";
     }
 });
 
@@ -226,6 +246,7 @@ dateOfBirth.addEventListener("change", () => {
         dateOfBirth.classList.add("error");    
         ageInput.classList.remove("correct");
         ageInput.classList.add("error");
+        document.getElementById("age-err-msg").style.display = "block";
     }
     else{
         dateOfBirthValue = dateOfBirth.value;
@@ -235,6 +256,7 @@ dateOfBirth.addEventListener("change", () => {
         dateOfBirth.classList.add("correct");
         ageInput.classList.remove("error");
         ageInput.classList.add("correct");
+        document.getElementById("age-err-msg").style.display = "none";
     }
 });
 
@@ -260,38 +282,105 @@ form.addEventListener("submit", (event) => {
         vehicleBrandValid === false || 
         vehicleModelValid === false || 
         validateRadioGroup() === false){
-        console.log("Form not submitted");
-        console.log("Name: " + nameValid);
-        console.log("Surname: " + surnameValid);
-        console.log("Email: " + emailValid);
-        console.log("Phone: " + phoneValid);
-        console.log("Age: " + ageValid);
-        console.log("Vehicle type: " + vehicleTypeValid);
-        console.log("Vehicle brand: " + vehicleBrandValid);
-        console.log("Vehicle model: " + vehicleModelValid);
-        console.log("Radio group: " + validateRadioGroup());
+        if(nameValid === false){
+            firstName.classList.add("error");
+            firstName.classList.remove("correct");
+        }
+        if(surnameValid === false){
+            lastName.classList.add("error");
+            lastName.classList.remove("correct");
+        }
+        if(emailValid === false){
+            email.classList.add("error");
+            email.classList.remove("correct");
+        }
+        if(phoneValid === false){
+            phone.classList.add("error");
+            phone.classList.remove("correct");
+            phonePrefix.classList.add("error");
+            phonePrefix.classList.remove("correct");
+        }
+        if(ageValid === false){
+            dateOfBirth.classList.add("error");
+            dateOfBirth.classList.remove("correct");
+            ageInput.classList.add("error");
+            ageInput.classList.remove("correct");
+        }
+        if(vehicleTypeValid === false){
+            document.getElementById("vehicle-type").classList.add("error");
+            document.getElementById("vehicle-err-msg").style.display = "block";
+        }
+        if(vehicleBrandValid === false){
+            document.getElementById("vehicle-brand").classList.add("error");
+            document.getElementById("vehicle-err-msg").style.display = "block";
+            brandSelect.forEach((select) => {
+                select.classList.add("error");
+            });
+        }
+        if(vehicleModelValid === false){
+            document.getElementById("vehicle-model").classList.add("error");
+            document.getElementById("vehicle-err-msg").style.display = "block";
+            modelSelects.forEach((select) => {
+                select.classList.add("error");
+            });
+        }
+        if(validateRadioGroup() === false){
+            document.getElementById("rental-err-msg").style.display = "block";
+            document.getElementById("rental-err-msg").style.display = "block";
+        }
+        placeholderSelects.forEach((select) => {
+            select.classList.add("error");
+        });
         isValid = false;
     }
 
     if (isValid) {
-        console.log("Form submitted");
-        console.log("Name: " + nameValue);
-        console.log("Surname: " + surnameValue);
-        console.log("Email: " + emailValue);
-        console.log("Phone: " + phoneValue);
-        console.log("Age: " + ageValue);
-        console.log("Date of birth: " + dateOfBirthValue);
-        console.log("Vehicle type: " + vehicleTypeValue);
-        console.log("Vehicle brand: " + vehicleBrandValue);
-        console.log("Vehicle model: " + vehicleModelValue);
-        console.log("Radio group: " + radioGroupValue);
-        console.log("Rental length: " + rentalLengthTextareaValue);
-        console.log("Extra services: " + extraServicesValues);
+        ageInput.disabled = false;
+        document.getElementById("sum-name").innerHTML = "Meno: "+nameValue;
+        document.getElementById("sum-surname").innerHTML = "Priezvisko: "+surnameValue;
+        document.getElementById("sum-email").innerHTML = "Email: "+emailValue;
+        document.getElementById("sum-phone").innerHTML = "Tel. číslo: "+phoneValue;
+        document.getElementById("sum-age").innerHTML = "Vek: "+ageValue;
+        document.getElementById("sum-date-of-birth").innerHTML = "Dátum narodenia: "+dateOfBirthValue;
+        document.getElementById("sum-vehicle-type").innerHTML = "Typ vozidla: "+vehicleTypeValue;
+        document.getElementById("sum-vehicle-brand").innerHTML = "Značka vozidla: "+vehicleBrandValue;
+        document.getElementById("sum-vehicle-model").innerHTML = "Model vozidla: "+vehicleModelValue;
+        document.getElementById("sum-rental-length").innerHTML = "Dĺžka zapožičania: "+radioGroupValue;
+        if(radioCustom.checked){
+            document.getElementById("sum-rental-length-custom").innerHTML = "Vlastná dĺžka zapožičania: "+rentalLengthTextareaValue;
+        } else{
+            rentalLengthTextarea.disabled = true;
+        }
+        if(extraServicesValues.length !== 0){
+            document.getElementById("sum-extra-services").innerHTML = "Extra služby: "+extraServicesValues.join(", ");
+        }
+        document.getElementById("modal").style.display = "block";
     }
 });
 
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     return emailRegex.test(email);
 }
 
+const closeModalBtn = document.getElementById("close-modal-btn");
+closeModalBtn.addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+});
+
+const submitModalBtn = document.getElementById("submit-form-btn");
+submitModalBtn.addEventListener("click", () => {
+    document.getElementById("modal").style.display = "none";
+    form.submit();
+});
+
+
+const hiddenNameBtn = document.getElementById("hidden-name-btn");
+
+hiddenNameBtn.addEventListener("click", () => {
+    if(document.getElementById("hidden-name-area").hidden === false){
+        document.getElementById("hidden-name-area").hidden = true;
+    } else {
+        document.getElementById("hidden-name-area").hidden = false;
+    }
+});

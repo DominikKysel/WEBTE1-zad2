@@ -69,6 +69,11 @@ button:hover {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.inline-div label {
+    margin-left: 0;
     width: 100%;
 }
 .inline-div select {
@@ -201,16 +206,55 @@ button:hover {
 .default-hidden {
     display: none;
 }
-
 .correct {
     color: #21f721;
     border-color: #21f721;
 
 }
-
 .error {
     color: #f72121;
-    border-color: #f72121;
+    border-color: #f72121 !important;
+}
+.error-msg{
+    color: #f72121;
+    font-size: 0.75em;
+    margin-left: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0;
+    text-align: left;
+    display: none;
+    transition: 0.2s ease-in-out;
+}
+.legend {
+    font-size: 0.75em;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    opacity: 0.5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    text-align: center;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-body {
+    background-color: #000;
+    color: #fff;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #2545ff;
+    border-radius: 1em;
+    width: 50%;
+    height: 80vh;
+    overflow: auto;
 }
 
 @media only screen and (max-width: 600px) {
