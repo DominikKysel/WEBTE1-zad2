@@ -5,7 +5,7 @@ html {
     font-size: 1.25em;
 }
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
     background-color: #000;
     color: #fff;
 }
@@ -28,7 +28,6 @@ form {
 .input {
     display: flex;
     flex-direction: column;
-    align-items: left;
     width: 100%;
 }
 
@@ -83,10 +82,20 @@ button:hover {
     max-width: 60%;
 }
 
-
+.label-p {
+    margin-left: 0.5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: left;
+}
 
 
 /* Checkbox and Radio custom styles*/
+/**
+* 
+* Inspired by: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
+*
+**/
 
 .checkbox-group , .radio-group{
     display: flex;
@@ -118,24 +127,23 @@ button:hover {
     height: 0;
     width: 0;
 }
-/* Checkbox */
-.checkmark {
+.checkmark, .radio-indicator {
     position: absolute;
     top: 0;
     right: 0;
-    height: 25px;
-    width: 25px;
     background-color: #000;
     border: 1px solid #2545ff;
     border-radius: 1em;
 }
-  
+
+/* Checkbox */
+.checkmark {
+    height: 25px;
+    width: 25px;
+}
+
 .checkbox-container:hover input ~ .checkmark {
     background-color: #0c1441;
-}
-  
-.checkbox-container input:checked ~ .checkmark {
-    background-color: #000;
 }
   
 .checkmark:after {
@@ -161,25 +169,14 @@ button:hover {
 }
 /* Radio */
 .radio-indicator {
-    position: absolute;
-    top: 0;
-    right: 0;
     height: 20px;
     width: 35px;
-    background-color: #000;
-    border-radius: 1em;
-    border: 1px solid #2545ff;
 }
   
 .radio-container:hover input ~ .radio-indicator {
     background-color: #0b123d;
     border: 1px solid #2545ff;
 }
-  
-.radio-container input:checked ~ .radio-indicator {
-    background-color: #000;
-}
-  
 .radio-indicator:after {
     content: "";
     position: absolute;
@@ -211,9 +208,15 @@ button:hover {
     border-color: #21f721;
 
 }
+.correct ~.radio-indicator {
+    border-color: #21f721;
+}
 .error {
     color: #f72121;
     border-color: #f72121 !important;
+}
+.error ~.radio-indicator {
+    border-color: #f72121;
 }
 .error-msg{
     color: #f72121;
@@ -289,7 +292,6 @@ button:hover {
         width: 100%;
         margin-bottom: 10px;
         flex-direction: column;
-        align-items: left;
         flex-wrap: wrap;
     }
 
@@ -303,7 +305,6 @@ button:hover {
     }
     .inline-div {
         flex-direction: column;
-        align-items: left;
         flex-wrap: wrap;
     }
     .inline-div select, .inline-div input {
@@ -314,5 +315,8 @@ button:hover {
     }
     .modal-btns {
         flex-direction: column;
+    }
+    .modal-btn {
+        margin: 0.5em 0;
     }
 }

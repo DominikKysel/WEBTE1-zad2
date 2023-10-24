@@ -1,9 +1,13 @@
+<!DOCTYPE html>
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Požičovňa vozidiel</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Rezervačný formulár</h1>
@@ -18,50 +22,53 @@
         <h3>Základné infromácie*</h3>
         <div class="form-section">
             <div class="input">
-                <label for="Meno">Meno</label>
+                <label for="name">Meno</label>
                 <input type="text" name="Meno" id="name" maxlength="30" autocomplete="given-name" placeholder="Zadajte meno">
-                <label for="Meno" class="counter-label" id="name-counter">0/30</label>
+                <label class="error-msg" id="name-err-msg" for="name">Povinné pole!</label>
+                <label for="name" class="counter-label" id="name-counter">0/30</label>
             </div>
             <div class="input">
-                <label for="Priezvisko">Priezvisko</label>
+                <label for="surname">Priezvisko</label>
                 <input type="text" name="Priezvisko" id="surname" maxlength="30" autocomplete="family-name" placeholder="Zadajte priezvisko">
-                <label for="Priezvisko" class="counter-label" id="surname-counter">0/30</label>
+                <label class="error-msg" id="surname-err-msg" for="surname">Povinné pole!</label>
+                <label for="surname" class="counter-label" id="surname-counter">0/30</label>
             </div>
             <div class="input">
-                <label for="Vek">Vek</label>
+                <label for="age">Vek</label>
                 <input type="number" name="Vek" id="age" placeholder="100" readonly>
             </div>
             <div class="input">
-                <label for="Datum narodenia">Dátum narodenia</label>
-                <input type="date" name="Datum narodenia" id="date-of-birth" autocomplete="bday">
-                <label class="error-msg" id="age-err-msg" for="date-of-birth">Vek musí byť v rozmedzí 18-100 rokov!</label>
+                <label for="date-of-birth">Dátum narodenia</label>
+                <input type="date" name="Datum_narodenia" id="date-of-birth" autocomplete="bday">
+                <label class="error-msg" id="age-err-msg" for="date-of-birth">Vek musí byť zadaný a to v rozmedzí 18-100 rokov!</label>
             </div>
             <div class="input">
-                <label for="Telefonne cislo">Telefónne číslo</label>
+                <label for="phone">Telefónne číslo</label>
                 <div class="inline-div">
-                    <select name="Telefon-prefix" id="phone-prefix">
+                    <select name="Telefon_prefix" id="phone-prefix">
                         <option value="none" selected disabled hidden>Vyberte predvoľbu</option>
                         <option value="+421">+421</option>
                         <option value="+420">+420</option>
                         <option value="+49">+49</option>
                         <option value="+44">+44</option>
                         <option value="+1">+1</option>
-                    <input type="tel" name="Telefonne cislo" id="phone" maxlength="12" autocomplete="tel" placeholder="Zadajte vaše číslo">
-                    <label for="Telefonne cislo" class="counter-label" id="phone-counter">0/9</label>
-                    <label class="error-msg" id="phone-err-msg" for="Telefonne cislo">Telefónne číslo musí byť v správnom formáte napr.: 900 123 456, bez medzier a musí byť zvolený prefix!</label>
+                    </select>
+                    <input type="tel" name="Telefonne_cislo" id="phone" maxlength="12" autocomplete="tel" placeholder="Zadajte vaše číslo">
+                    <label for="phone" class="counter-label" id="phone-counter">0/9</label>
+                    <label class="error-msg" id="phone-err-msg" for="phone">Telefónne číslo musí byť zadané a to v správnom formáte napr.: 900 123 456, bez medzier a musí byť zvolený prefix!</label>
                 </div>
             </div>
             <div class="input">
-                <label for="Email">Email</label>
+                <label for="email">Email</label>
                 <input type="email" name="Email" id="email" autocomplete="email" placeholder="Zadajte váš email">
-                <label class="error-msg" id="email-err-msg" for="email">Email musí byť v správnom formáte: name@domain.tld!</label>
+                <label class="error-msg" id="email-err-msg" for="email">Email musí byť zadaný a to v správnom formáte: name@domain.tld!</label>
             </div>
         </div>
         <h3>Výber vozidla*</h3>
         <div class="form-section">
             <div class="input" id="vehicle-types">
                 <label for="vehicle-type">Typ vozidla</label>
-                <select name="vehicle-type" id="vehicle-type">
+                <select name="Typ_vozidla" id="vehicle-type">
                     <option value="none" selected disabled hidden>Vyberte typ vozidla</option>
                     <option value="Auto">Auto</option>
                     <option value="Motocykel">Motocykel</option>
@@ -69,13 +76,13 @@
                 </select>
             </div>
             <div class="input" id="vehicle-brands">
-                <div id="vehicle-brand">
+                <div id="vehicle-brand-div">
                     <label for="vehicle-brand">Značka vozidla</label>
-                    <select name="vehicle-brand" class="placeholder-inputs" disabled="disabled"></select>
+                    <select name="Znacka_vozidla" id="vehicle-brand" class="placeholder-inputs" disabled="disabled"></select>
                 </div>
                 <div data-price="40" data-type="Auto" class="vehicle-type-div default-hidden">
                     <label for="car-brand">Značka auta</label>
-                    <select name="car-brand" id="car-brand" class="brand-select">
+                    <select name="Znacka_vozidla" id="car-brand" class="brand-select">
                         <option value="none" selected disabled hidden>Vyberte značku auta</option>
                         <option value="VW" class="brandForCar">Volkswagen</option>
                         <option value="Audi" class="brandForCar">Audi</option>
@@ -84,7 +91,7 @@
                 </div>
                 <div data-price="20" data-type="Motocykel" class="vehicle-type-div default-hidden">
                     <label for="motorbike-brand">Značka motocykla</label>
-                    <select name="motorbike-brand" id="motorbike-brand" class="brand-select">
+                    <select name="Znacka_vozidla" id="motorbike-brand" class="brand-select">
                         <option value="none" selected disabled hidden>Vyberte značku motocykla</option>
                         <option value="Yamaha" class="brandForMotorbike">Yamaha</option>
                         <option value="Kawasaki" class="brandForMotorbike">Kawasaki</option>
@@ -93,7 +100,7 @@
                 </div>
                 <div data-price="100" data-type="Autobus" class="vehicle-type-div default-hidden">
                     <label for="bus-brand">Značka autobusu</label>
-                    <select name="bus-brand" id="bus-brand" class="brand-select">
+                    <select name="Znacka_vozidla" id="bus-brand" class="brand-select">
                         <option value="none" selected disabled hidden>Vyberte značku autobusu</option>
                         <option value="Volvo" class="brandForBus">Volvo</option>
                         <option value="Iveco" class="brandForBus">Iveco</option>
@@ -102,25 +109,25 @@
                 </div>
             </div>
             <div class="input" id="vehicle-models">
-                <div id="vehicle-model">
+                <div id="vehicle-model-div">
                     <label for="vehicle-model">Model vozidla</label>
-                    <select name="vehicle-model" class="placeholder-inputs" disabled="disabled"></select>
+                    <select name="Model_vozidla" id="vehicle-model" class="placeholder-inputs" disabled="disabled"></select>
                 </div>
                 <!--Car models-->
                 <div data-price="0" data-type="Auto" class="vehicle-type-div default-hidden">
-                    <label for="car-model">Model auta</label>
+                    <p class="label-p">Model auta</p>
                     <select data-brand="none" name="car-model" class="model-empty placeholder-inputs" disabled></select>
-                    <select data-brand="VW" name="car-model" id="car-model-vw" class="vehicle-model-div default-hidden">
+                    <select data-brand="VW" name="Model_vozidla" id="car-model-vw" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="Arteon" class="ModelForCar">Arteon</option>
                         <option value="Golf GTI" class="ModelForCar">Golf GTI</option>
                     </select>
-                    <select data-brand="Audi" name="car-model" id="car-model-audi" class="vehicle-model-div default-hidden">
+                    <select data-brand="Audi" name="Model_vozidla" id="car-model-audi" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="R8" class="ModelForCar">R8</option>
                         <option value="Q8" class="ModelForCar">Q8</option>
                     </select>
-                    <select data-brand="Mercedes" name="car-model" id="car-model-mercedes" class="vehicle-model-div default-hidden">
+                    <select data-brand="Mercedes" name="Model_vozidla" id="car-model-mercedes" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="GLA SUV" class="ModelForCar">GLA SUV</option>
                         <option value="AMG GT 4-door Coupe" class="ModelForCar">AMG GT 4-door Coupe</option>
@@ -128,19 +135,19 @@
                 </div>
                 <!--Motorbike models-->
                 <div data-price="0" data-type="Motocykel" class="vehicle-type-div default-hidden">
-                    <label for="motorbike-model">Model motocykla</label>
-                    <select data-brand="none" name="motorbike-model" class="model-empty placeholder-inputs" disabled></select>
-                    <select data-brand="Yamaha" name="motorbike-model" id="motorbike-model-yamaha" class="vehicle-model-div default-hidden">
+                    <p class="label-p">Model motocykla</p>
+                    <select data-brand="none" name="Model_vozidla" class="model-empty placeholder-inputs" disabled></select>
+                    <select data-brand="Yamaha" name="Model_vozidla" id="motorbike-model-yamaha" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="R15 V4" class="modelForMotorbike">R15 V4</option>
                         <option value="FZ-X" class="modelForMotorbike">FZ-X</option>
                     </select>
-                    <select data-brand="Kawasaki" name="motorbike-model" id="motorbike-model-kawasaki" class="vehicle-model-div default-hidden">
+                    <select data-brand="Kawasaki" name="Model_vozidla" id="motorbike-model-kawasaki" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="VERSYS-X 300" class="modelForMotorbike">VERSYS-X 300</option>
                         <option value="ELIMINATOR" class="modelForMotorbike">ELIMINATOR</option>
                     </select>
-                    <select data-brand="Honda" name="motorbike-model" id="motorbike-model-honda" class="vehicle-model-div default-hidden">
+                    <select data-brand="Honda" name="Model_vozidla" id="motorbike-model-honda" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="XR150L" class="modelForMotorbike">XR150L</option>
                         <option value="CB500F" class="modelForMotorbike">CB500F</option>
@@ -148,19 +155,19 @@
                 </div>
                 <!--Bus models-->
                 <div data-price="0" data-type="Autobus" class="vehicle-type-div default-hidden">
-                    <label for="bus-model">Model autobusu</label>
-                    <select data-brand="none" name="bus-model" class="model-empty placeholder-inputs" disabled></select>
-                    <select data-brand="Volvo" name="bus-model" id="bus-model-volvo" class="vehicle-model-div default-hidden">
+                    <p class="label-p">Model autobusu</p>
+                    <select data-brand="none" name="Model_vozidla" class="model-empty placeholder-inputs" disabled></select>
+                    <select data-brand="Volvo" name="Model_vozidla" id="bus-model-volvo" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="7700" class="modelForBus">7700</option>
                         <option value="9700" class="modelForBus">9700</option>
                     </select>
-                    <select data-brand="Iveco" name="bus-model" id="bus-model-iveco" class="vehicle-model-div default-hidden">
+                    <select data-brand="Iveco" name="Model_vozidla" id="bus-model-iveco" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="EVADYS" class="modelForBus">EVADYS</option>
                         <option value="CROSSWAY" class="modelForBus">CROSSWAY</option>
                     </select>
-                    <select data-brand="Scania" name="bus-model" id="bus-model-scania" class="vehicle-model-div default-hidden">
+                    <select data-brand="Scania" name="Model_vozidla" id="bus-model-scania" class="vehicle-model-div default-hidden">
                         <option value="none" selected disabled hidden>Vyberte model</option>
                         <option value="Citywide" class="modelForBus">Citywide</option>
                         <option value="Higer A30" class="modelForBus">Higer A30</option>
@@ -220,11 +227,11 @@
                 </div>
             </div>
         </div>
-        <input type="text" name="Price" id="price" value="Cena: " readonly></input>
+        <input type="text" name="Price" id="price" value="Cena: " readonly>
         <button id="submit-btn" type="submit">Odoslať</button>
-    </form>
-    <button id="hidden-name-btn">Prepni stav mena</button>
-    <textarea name="hidden-name-area" id="hidden-name-area" cols="30" rows="1" hidden readonly>Dominik Kysel</textarea>  
+        <button id="hidden-name-btn" type="button">Prepni stav mena</button>
+    <textarea name="Skryte_pole_s_menom" id="hidden-name-area" cols="30" rows="1" hidden readonly>Dominik Kysel</textarea>
+    </form>  
     <p class="legend">* - povinná sekcia</p>
     <div class="modal" id="modal">
         <div class="modal-body">
