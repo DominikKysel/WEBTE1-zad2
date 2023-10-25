@@ -10,13 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Rezervačný formulár</h1>
+    <h1>Rezervácia vozidla</h1>
     <form action="https://form2mail.iolab.sk/form2mail.php" method="post" enctype="multipart/form-data" id="form">
         <input type="hidden" name="apikey" value="0cc553ea73c1d14a4910c048432897c8">
         <input type="hidden" name="from" value="xkyseld@stuba.sk">
         <input type="hidden" name="sender" value="Dominik Kysel">
-        <input type="hidden" name="to" value="kysel.dominik@gmail.com">
-        <input type="hidden" name="subject" value="Formulár - zadanie 2 - Kysel">
+        <input type="hidden" name="to" value="feistu01@gmail.com">
+        <input type="hidden" name="subject" value="Formulár - Dominik Kysel">
         <input type="hidden" name="redirectOk" value="https://webte1.fei.stuba.sk/~xkyseld/formularik/success.html">
         <input type="hidden" name="redirectFalse" value="https://webte1.fei.stuba.sk/~xkyseld/formularik/error.html">
         <h3>Základné infromácie*</h3>
@@ -54,14 +54,44 @@
                         <option value="+1">+1</option>
                     </select>
                     <input type="tel" name="Telefonne_cislo" id="phone" maxlength="12" autocomplete="tel" placeholder="Zadajte vaše číslo">
-                    <label for="phone" class="counter-label" id="phone-counter">0/9</label>
-                    <label class="error-msg" id="phone-err-msg" for="phone">Telefónne číslo musí byť zadané a to v správnom formáte napr.: 900 123 456, bez medzier a musí byť zvolený prefix!</label>
                 </div>
+                <label for="phone" class="counter-label" id="phone-counter">0/9</label>
+                <label class="error-msg" id="phone-err-msg" for="phone">Telefónne číslo musí byť zadané a to v správnom formáte napr.: 900 123 456, bez medzier a musí byť zvolený prefix!</label>
             </div>
             <div class="input">
                 <label for="email">Email</label>
                 <input type="email" name="Email" id="email" autocomplete="email" placeholder="Zadajte váš email">
                 <label class="error-msg" id="email-err-msg" for="email">Email musí byť zadaný a to v správnom formáte: name@domain.tld!</label>
+            </div>
+            <div class="input">
+                <p class="radio-group-label">Vyberte pohlavie:</p>
+                <div class="radio-group" id="gender-radio-group">
+                    <label class="radio-container" for="gender-val1">Muž
+                        <input type="radio" name="Pohlavie" id="gender-val1" value="muž">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <label class="radio-container" for="gender-val2">Žena
+                        <input type="radio" name="Pohlavie" id="gender-val2" value="žena">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <label class="radio-container" for="gender-val3">Preferujem neuviesť
+                        <input type="radio" name="Pohlavie" id="gender-val3" value="no-comment">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <label class="radio-container" for="gender-val4">Iné
+                        <input type="radio" name="Pohlavie" id="gender-val4" value="Iné">
+                        <span class="radio-indicator"></span>
+                    </label>
+                    <textarea class="default-hidden" 
+                        name="Vlastne_pohlavie" 
+                        id="gender-textarea" 
+                        cols="30" rows="5"
+                        maxlength="15"
+                        placeholder="Napíšte vaše pohlavie"
+                        ></textarea>
+                </div>
+                <label for="gender-textarea" class="counter-label default-hidden" id="gender-textarea-counter">0/15</label>
+                <p class="error-msg" id="gender-err-msg">Musí byť zvolené, prípadne ak zvolíte možnosť iné, musíte napísať vlastnú odpoveď do textového pola!</p>
             </div>
         </div>
         <h3>Výber vozidla*</h3>
@@ -180,25 +210,25 @@
         <div class="form-section">
             <div class="input">
                 <p class="radio-group-label">Vyberte si dĺžku zapožičania vozidla:*</p>
-                <div class="radio-group">
+                <div class="radio-group" id="rental-radio-group">
                     <label class="radio-container" for="rental-length-1">1-3 dni
-                        <input data-price="20" type="radio" name="rental-length" id="rental-length-1" value="1-3 dni">
+                        <input data-price="20" type="radio" name="Dlzka_zapozicania" id="rental-length-1" value="1-3 dni">
                         <span class="radio-indicator"></span>
                     </label>
                     <label class="radio-container" for="rental-length-2">3-7 dní
-                        <input data-price="35" type="radio" name="rental-length" id="rental-length-2" value="3-7 dní">
+                        <input data-price="35" type="radio" name="Dlzka_zapozicania" id="rental-length-2" value="3-7 dní">
                         <span class="radio-indicator"></span>
                     </label>
                     <label class="radio-container" for="rental-length-3">14-30 dní
-                        <input data-price="55" type="radio" name="rental-length" id="rental-length-3" value="14-30 dní">
+                        <input data-price="55" type="radio" name="Dlzka_zapozicania" id="rental-length-3" value="14-30 dní">
                         <span class="radio-indicator"></span>
                     </label>
                     <label class="radio-container" for="rental-length-4">Iné
-                        <input data-price="80" type="radio" name="rental-length" id="rental-length-4" value="custom">
+                        <input data-price="80" type="radio" name="Dlzka_zapozicania" id="rental-length-4" value="custom">
                         <span class="radio-indicator"></span>
                     </label>
                     <textarea class="default-hidden" 
-                        name="rental-length-textarea" 
+                        name="Vlastna_dlzka_zapozicania" 
                         id="rental-length-textarea" 
                         cols="30" rows="5"
                         maxlength="30"
@@ -212,18 +242,32 @@
                 <p class="checkbox-group-label">Vyberte si doplnkové služby:</p>
                 <div class="checkbox-group">
                     <label class="checkbox-container" for="additional-services-1">Poistenie
-                        <input data-price="10" type="checkbox" name="additional-services-1" id="additional-services-1" value="Poistenie">
+                        <input data-price="10" type="checkbox" name="Extra_servis_1" id="additional-services-1" value="Poistenie">
                         <span class="checkmark"></span>
                     </label>
                     
                     <label class="checkbox-container" for="additional-services-2">Zimné pneumatiky
-                        <input data-price="20" type="checkbox" name="additional-services-2" id="additional-services-2" value="Zimné pneumatiky">
+                        <input data-price="20" type="checkbox" name="Extra_servis_2" id="additional-services-2" value="Zimné pneumatiky">
                         <span class="checkmark"></span>
                     </label>
                     <label class="checkbox-container" for="additional-services-3">Navigácia
-                        <input data-price="10" type="checkbox" name="additional-services-3" id="additional-services-3" value="Navigácia">
+                        <input data-price="10" type="checkbox" name="Extra_servis_3" id="additional-services-3" value="Navigácia">
                         <span class="checkmark"></span>
                     </label>
+                    <label class="checkbox-container" for="additional-services-4">Na požiadanie
+                        <input data-price="30+" type="checkbox" name="Extra_servis_4" id="additional-services-4" value="Vlastne">
+                        <span class="checkmark"></span>
+                    </label>
+                    <textarea class="default-hidden" 
+                        name="Vlastny_extra_servis" 
+                        id="extra-service-textarea" 
+                        cols="30" rows="10"
+                        maxlength="60"
+                        placeholder="Napíšte čo si želáte"
+                        ></textarea>
+                </div>
+                <label for="extra-service-textarea" class="counter-label default-hidden" id="extra-service-textarea-counter">0/60</label>
+                <p class="error-msg" id="extra-service-err-msg">Ak ste zaškrtli možnosť "Na požiadanie", musíte vyplniť textové pole v ktorom napíšete čo si želáte!</p>
                 </div>
             </div>
         </div>
@@ -233,33 +277,36 @@
     <textarea name="Skryte_pole_s_menom" id="hidden-name-area" cols="30" rows="1" hidden readonly>Dominik Kysel</textarea>
     </form>  
     <p class="legend">* - povinná sekcia</p>
-    <div class="modal" id="modal">
+    <div class="modal" id="sum-modal">
         <div class="modal-body">
-            <h3 class="summary">Sumár</h3>
-            <div class="sum-body">
-                <div class="sum-section">
-                    <h4 class="sum-section-title">Základné informácie</h4>
-                    <p class="sum-section-item" id="sum-name"></p>
-                    <p class="sum-section-item" id="sum-surname"></p>
-                    <p class="sum-section-item" id="sum-age"></p>
-                    <p class="sum-section-item" id="sum-date-of-birth"></p>
-                    <p class="sum-section-item" id="sum-phone"></p>
-                    <p class="sum-section-item" id="sum-email"></p>
+            <h3>Sumár</h3>
+            <div>
+                <div>
+                    <h4>Základné informácie</h4>
+                    <p id="sum-name"></p>
+                    <p id="sum-surname"></p>
+                    <p id="sum-gender"></p>
+                    <p id="sum-gender-custom"></p>
+                    <p id="sum-age"></p>
+                    <p id="sum-date-of-birth"></p>
+                    <p id="sum-phone"></p>
+                    <p id="sum-email"></p>
                 </div>
-                <div class="sum-section">
-                    <h4 class="sum-section-title">Výber vozidla</h4>
-                    <p class="sum-section-item" id="sum-vehicle-type"></p>
-                    <p class="sum-section-item" id="sum-vehicle-brand"></p>
-                    <p class="sum-section-item" id="sum-vehicle-model"></p>
+                <div>
+                    <h4>Výber vozidla</h4>
+                    <p id="sum-vehicle-type"></p>
+                    <p id="sum-vehicle-brand"></p>
+                    <p id="sum-vehicle-model"></p>
                 </div>
-                <div class="sum-section">
-                    <h4 class="sum-section-title">Ďalšie informácie</h4>
-                    <p class="sum-section-item" id="sum-rental-length"></p>
-                    <p class="sum-section-item" id="sum-rental-length-custom"></p>
-                    <p class="sum-section-item" id="sum-extra-services"></p>
+                <div>
+                    <h4>Ďalšie informácie</h4>
+                    <p id="sum-rental-length"></p>
+                    <p id="sum-rental-length-custom"></p>
+                    <p id="sum-extra-services"></p>
+                    <p id="sum-extra-services-custom"></p>
                 </div>
             </div>
-            <p class="sum-price" id="sum-price"></p>
+            <p id="sum-price"></p>
             <div class="modal-btns">
                 <button id="close-modal-btn" class="error modal-btn">Zavrieť</button>
                 <button id="submit-form-btn" class="correct modal-btn">Odoslať</button>
